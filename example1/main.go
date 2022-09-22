@@ -19,10 +19,12 @@ var data = `
 }
 `
 
+// A interface
 type AData interface {
 	Unmarshal(io.Reader) error
 }
 
+// B generic interface
 type BData[P any] interface {
 	Unmarshal(io.Reader) error
 	*P
@@ -37,12 +39,21 @@ type Data struct {
 	Items []Item `json:"data"`
 }
 
+// Unmarshal is to make Data satisfy the interface and constraint but also do some work.
 func (d *Data) Unmarshal(r io.Reader) error {
-	err := json.NewDecoder(r).Decode(d)
+	return json.NewDecoder(r).Decode(d)
+}
+
+func decodeWithAny[T any]() (*T, error) {
+	jsonData := strings.NewReader(data)
+
+	var t T
+	err := json.NewDecoder(jsonData).Decode(&t)
 	if err != nil {
-		fmt.Println(err.Error())
+		return nil, err
 	}
-	return err
+
+	return &t, nil
 }
 
 func decodeWithAny[T any]() (*T, error) {
