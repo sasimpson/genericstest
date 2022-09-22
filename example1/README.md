@@ -4,4 +4,6 @@ i was playing with a client where the http methods were generic functions.  you 
 
 so the fun part comes from wanting to use that type to store the data, but also has the method which is writing back.  this did not go well unless its a pointer receiver.  if you add a * to make the type a pointer match, you're really just telling the compiler its a pointer to a type, not a type that can use a pointer. you can see the iteration in the tests and code of how that works out. 
 
-gist of the solution is [here](https://stackoverflow.com/a/69575720)
+better explanation of the problem and solution is [here](https://stackoverflow.com/a/69575720)
+
+[goplay.tools](https://goplay.tools/snippet/NRPfO-PF66C)
