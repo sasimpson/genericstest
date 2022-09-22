@@ -1,5 +1,7 @@
 *
 
-~*.go
-~*.mod
-~*.sum
+!.gitignore
+
+!*.go
+!*.mod
+!*.sum
